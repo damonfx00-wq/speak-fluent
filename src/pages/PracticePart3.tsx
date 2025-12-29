@@ -3,6 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { QuestionCard } from "@/components/speaking/QuestionCard";
 import { RecordButton } from "@/components/speaking/RecordButton";
 import { FeedbackPanel } from "@/components/speaking/FeedbackPanel";
+import { IdeaGenerator } from "@/components/speaking/IdeaGenerator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -80,13 +81,12 @@ const PracticePart3 = () => {
               {discussionQuestions.map((_, index) => (
                 <div
                   key={index}
-                  className={`h-2 flex-1 rounded-full transition-colors ${
-                    answeredQuestions.includes(index)
-                      ? "bg-success"
-                      : index === currentIndex
+                  className={`h-2 flex-1 rounded-full transition-colors ${answeredQuestions.includes(index)
+                    ? "bg-success"
+                    : index === currentIndex
                       ? "bg-primary"
                       : "bg-muted"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -101,6 +101,8 @@ const PracticePart3 = () => {
               onNext={handleNext}
             />
 
+            <IdeaGenerator topic={currentQuestion} />
+
             {/* Recording Controls */}
             <Card variant="gradient" className="p-8">
               <div className="flex flex-col items-center gap-6">
@@ -108,16 +110,16 @@ const PracticePart3 = () => {
                   <MessageCircle className="h-4 w-4" />
                   <span>Take your time — no strict limit for Part 3</span>
                 </div>
-                
+
                 <RecordButton
                   isRecording={isRecording}
                   onToggle={handleRecordToggle}
                   size="large"
                 />
-                
+
                 <p className="text-sm text-muted-foreground">
-                  {isRecording 
-                    ? "Recording... Click to stop when done" 
+                  {isRecording
+                    ? "Recording... Click to stop when done"
                     : "Click to start your response"}
                 </p>
               </div>
@@ -151,7 +153,7 @@ const PracticePart3 = () => {
           {/* Feedback Panel */}
           <div className="lg:col-span-1">
             {showFeedback ? (
-              <FeedbackPanel 
+              <FeedbackPanel
                 overallBand={6.5}
                 scores={[
                   { label: "Fluency", score: 7.0, icon: () => null, color: "text-primary" },

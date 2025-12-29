@@ -10,6 +10,8 @@ import PracticePart2 from "./pages/PracticePart2";
 import PracticePart3 from "./pages/PracticePart3";
 import RandomTalk from "./pages/RandomTalk";
 import Dashboard from "./pages/Dashboard";
+import StudyPlanner from "./pages/StudyPlanner";
+import IELTSPractice from "./pages/IELTSPractice";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,7 +29,9 @@ const App = () => (
           <Route path="/practice/part2" element={<PracticePart2 />} />
           <Route path="/practice/part3" element={<PracticePart3 />} />
           <Route path="/practice/random" element={<RandomTalk />} />
+          <Route path="/ielts-practice" element={<IELTSPractice />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/study-plan" element={<StudyPlanner />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

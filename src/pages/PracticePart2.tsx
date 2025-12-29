@@ -4,6 +4,7 @@ import { CueCard } from "@/components/speaking/CueCard";
 import { RecordButton } from "@/components/speaking/RecordButton";
 import { Timer } from "@/components/speaking/Timer";
 import { FeedbackPanel } from "@/components/speaking/FeedbackPanel";
+import { IdeaGenerator } from "@/components/speaking/IdeaGenerator";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -99,7 +100,7 @@ const PracticePart2 = () => {
                         onComplete={handlePrepComplete}
                       />
                     </div>
-                    
+
                     {!prepTimerRunning ? (
                       <Button onClick={handleStartPrep} size="lg" className="gap-2">
                         <Play className="h-4 w-4" />
@@ -112,6 +113,8 @@ const PracticePart2 = () => {
                     )}
                   </div>
                 </Card>
+
+                <IdeaGenerator topic={sampleCueCard.topic} />
 
                 <Card variant="default">
                   <CardContent className="p-4">
@@ -141,16 +144,16 @@ const PracticePart2 = () => {
                       variant="stopwatch"
                     />
                   </div>
-                  
+
                   <RecordButton
                     isRecording={isRecording}
                     onToggle={handleRecordToggle}
                     size="large"
                   />
-                  
+
                   <p className="text-sm text-muted-foreground">
-                    {isRecording 
-                      ? "Speaking... Click to finish" 
+                    {isRecording
+                      ? "Speaking... Click to finish"
                       : "Click to start speaking"}
                   </p>
                 </div>
@@ -180,7 +183,7 @@ const PracticePart2 = () => {
           {/* Feedback Panel */}
           <div className="lg:col-span-1">
             {showFeedback ? (
-              <FeedbackPanel 
+              <FeedbackPanel
                 overallBand={6.5}
                 suggestions={[
                   "Good structure following the cue card prompts",

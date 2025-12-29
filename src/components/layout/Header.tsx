@@ -1,12 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Mic, BarChart3, BookOpen, Menu, X } from "lucide-react";
+import { Mic, BarChart3, BookOpen, Menu, X, Calendar } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home", icon: null },
   { href: "/practice", label: "Practice", icon: BookOpen },
+  { href: "/study-plan", label: "Study Plan", icon: Calendar },
   { href: "/dashboard", label: "Dashboard", icon: BarChart3 },
 ];
 
