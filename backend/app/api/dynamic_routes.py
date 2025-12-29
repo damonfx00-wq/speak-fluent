@@ -89,7 +89,7 @@ Return JSON:
 }}"""
 
         response = nvidia_llm_service.generate_response(
-            [{"role": "system", "content": prompt}],
+            messages=[{"role": "system", "content": prompt}],
             temperature=0.7
         )
         
@@ -108,6 +108,7 @@ Return JSON:
         return roadmap
         
     except Exception as e:
+        print(f"Error generating roadmap: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Get Daily Practice Content
@@ -141,7 +142,7 @@ Return JSON:
 }}"""
 
         response = nvidia_llm_service.generate_response(
-            [{"role": "system", "content": prompt}],
+            messages=[{"role": "system", "content": prompt}],
             temperature=0.8
         )
         
@@ -162,6 +163,7 @@ Return JSON:
         return practice_content
         
     except Exception as e:
+        print(f"Error getting daily practice: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Track Progress
@@ -291,7 +293,7 @@ Return JSON:
 }"""
 
         response = nvidia_llm_service.generate_response(
-            [{"role": "system", "content": prompt}],
+            messages=[{"role": "system", "content": prompt}],
             temperature=0.9
         )
         
@@ -310,6 +312,7 @@ Return JSON:
         return topics
         
     except Exception as e:
+        print(f"Error getting daily topics: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Get Vocabulary of the Day
@@ -343,7 +346,7 @@ Return JSON:
 }"""
 
         response = nvidia_llm_service.generate_response(
-            [{"role": "system", "content": prompt}],
+            messages=[{"role": "system", "content": prompt}],
             temperature=0.7
         )
         
@@ -359,4 +362,5 @@ Return JSON:
         return vocabulary
         
     except Exception as e:
+        print(f"Error getting daily vocabulary: {e}")
         raise HTTPException(status_code=500, detail=str(e))

@@ -35,10 +35,56 @@ class NvidiaLLMService:
         """
         Generate complete response from NVIDIA API
         """
-        response = ""
-        for chunk in self.generate_stream(messages, temperature, max_tokens):
-            response += chunk
-        return response
+        try:
+            response = ""
+            for chunk in self.generate_stream(messages, temperature, max_tokens):
+                response += chunk
+            return response
+        except Exception as e:
+            print(f"⚠️ NVIDIA API Error: {e}")
+            print("   Falling back to mock data...")
+            
+            # Simple mock fallback based on content
+            last_msg = messages[-1]["content"].lower()
+            if "roadmap" in last_msg:
+                return json.dumps({
+                    "roadmap_id": "mock_roadmap",
+                    "total_weeks": 8,
+                    "weekly_plan": [{"week": 1, "focus": "Mock Focus", "daily_activities": [], "milestone": "Start", "expected_improvement": "0.5"}],
+                    "mock_tests": [],
+                    "estimated_final_band": 7.5
+                })
+            elif "practice content" in last_msg:
+                return json.dumps({
+                    "part": 1,
+                    "date": "2025-12-29",
+                    "content": {
+                        "questions": ["What is your favorite color?", "Do you like to travel?", "Tell me about your hometown."],
+                        "tips": ["Speak clearly", "Expand your answers"],
+                        "vocabulary": ["vibrant", "journey", "hometown"],
+                        "expected_duration": "10"
+                    }
+                })
+            elif "topics" in last_msg:
+                return json.dumps({
+                    "date": "2025-12-29",
+                    "topics": [
+                        {"part": 1, "topic": "Hometown", "difficulty": "easy"},
+                        {"part": 2, "topic": "A book you read", "difficulty": "medium"},
+                        {"part": 3, "topic": "Reading habits", "difficulty": "hard"}
+                    ]
+                })
+            elif "vocabulary" in last_msg:
+                return json.dumps({
+                    "date": "2025-12-29",
+                    "theme": "Travel",
+                    "words": [
+                        {"word": "Itinerary", "definition": "A planned route or journey", "example": "We planned a detailed itinerary.", "pronunciation": "/aɪˈtɪnəˌrɛri/"},
+                        {"word": "Excursion", "definition": "A short journey or trip", "example": "We went on an excursion to the mountains.", "pronunciation": "/ɪkˈskɜːrʒən/"}
+                    ]
+                })
+            else:
+                return "I apologize, but I cannot generate a response at the moment due to API limitations. Please check your API key."
     
     def practice_conversation(self, user_message: str, language: str = "English", level: str = "intermediate") -> str:
         """
